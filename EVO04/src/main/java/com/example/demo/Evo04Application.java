@@ -19,7 +19,7 @@ import java.util.concurrent.ExecutionException;
 @SpringBootApplication
 public class Evo04Application {
 
-	 public static void main(String[] args) {
+    public static void main(String[] args) {
         try {
             FileInputStream serviceAccount = new FileInputStream("src/main/resources/testbackend-daefb-firebase-adminsdk-ursuq-d36c02da04.json");
             FirebaseOptions options = new FirebaseOptions.Builder()
@@ -41,7 +41,7 @@ public class Evo04Application {
             QuerySnapshot querySnapshot = query.get();
 
             // Iterar sobre los documentos en la colección
-            for (QueryDocumentSnapshot document : querySnapshot) {
+            for (QueryDocumentSnapshot document : querySnapshot.getDocuments()) {
                 System.out.println("ID del Documento: " + document.getId());
                 System.out.println("Datos del Documento: " + document.getData());
             }
@@ -49,6 +49,6 @@ public class Evo04Application {
             SpringApplication.run(Evo04Application.class, args);
         } catch (IOException | InterruptedException | ExecutionException e) {
             e.printStackTrace();
-        }
-    }
+        }
+    }
 }
